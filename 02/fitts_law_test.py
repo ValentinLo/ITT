@@ -58,7 +58,8 @@ class ClickRecorder(QtGui.QWidget):
                     self.current_mouse_pos = None
                     self.counter += 1
                     self.update()
-                    if self.counter == 16:  # exit program after last target
+                    # exit program after last target
+                    if self.counter == len(self.combinations):
                         self.createCSV()
                         sys.exit()
 
