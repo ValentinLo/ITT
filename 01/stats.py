@@ -1,0 +1,74 @@
+#!/usr/bin/python
+#coding: utf-8
+
+
+import sys
+import math
+
+
+"""
+This Script prints out the mean, median and standard deviation
+
+Inputs are possible by passing a textfile as argument to the script
+or entering a list of integers via stdin.
+"""
+
+
+def main():
+
+    numbers = []
+
+    if len(sys.argv) > 1:  # check if textfile is passed as argument
+        for eachArg in sys.argv:
+            if eachArg == sys.argv[0]:
+                continue
+            else:
+                inf = open(eachArg).read()
+
+    else:  # else get stdin
+        print("Enter integers speperated by space characters: ")
+        inf = sys.stdin.readline()
+
+    numbers = map(int, inf.split())
+    if len(numbers) > 0:
+        print("Numbers entered sorted: ", sorted(numbers))
+        print("Mean: ", mean(numbers))
+        print("Median: ", median(numbers))
+        print("Standard Deviation: ", stddev(numbers))
+
+
+def mean(mean_numbers):
+    """ calculate the mean of the input numbers
+    """
+    return sum(mean_numbers) / float(len(mean_numbers))
+
+
+def median(median_numbers):
+    """ calculate the median of the input numbers
+    """
+    sorted_numbers = sorted(median_numbers)
+    length = len(sorted_numbers)
+
+    if len(median_numbers) % 2:  # uneven numbers of integers
+        return sorted_numbers[length / 2]
+
+    return (sorted_numbers[length / 2] + sorted_numbers[length / 2 - 1]) / 2.0
+
+
+def stddev(std_numbers):
+    """ calculate the standard deviation of the input numbers
+    """
+    mean = sum(std_numbers) / float(len(std_numbers))
+    sum_std = 0.0
+
+    for x in std_numbers:
+        sum_std += (mean - x) * (mean - x)
+
+    variance = sum_std / float(len(std_numbers))
+    stddev = math.sqrt(variance)
+
+    return stddev
+
+
+if __name__ == "__main__":
+    main()

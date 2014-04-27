@@ -1,0 +1,1 @@
+wget -nc http://www.gutenberg.org/dirs/etext98/2ws3410.txt && cat 2ws3410.txt |  sed -e "s/'//g" -e 's/[[:space:]|[:punct:]]/\n/g' | tr A-Z a-z | sed -e '/^$/d' -e '/[[:digit:]]/d'| sort | uniq -c | sort -nr | sed 's/[0-9]//g'| head
